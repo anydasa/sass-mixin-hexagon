@@ -1,0 +1,41 @@
+@mixin hexagon($hex-size, $background, $border-width, $border-color) {
+    position: relative;
+    margin: ($hex-size / 1.731901628) + px 0;
+
+    width: $hex-size + px;
+    height: ($hex-size / 1.731901628) + px;
+
+    background-color: $background;
+    border-left: solid $border-width + px $border-color;
+    border-right: solid $border-width + px $border-color;
+
+    &:before,
+    &:after {
+        content: "";
+        position: absolute;
+        z-index: 1;
+        width: ($hex-size / 1.414227125) + px;
+        height: ($hex-size / 1.414227125) + px;
+
+        -webkit-transform: scaleY(0.5774) rotate(-45deg);
+        -ms-transform: scaleY(0.5774) rotate(-45deg);
+        transform: scaleY(0.5774) rotate(-45deg);
+        background-color: inherit;
+        left: ($hex-size / 6.828408912 - $border-width) + px;
+    }
+
+    $offset: -($hex-size / 2.828430249) + px;
+    $b-width: ($border-width * 1.4142) + px;
+
+    &:before {
+        top: $offset;
+        border-top: solid $b-width $border-color;
+        border-right: solid $b-width $border-color;
+    }
+
+    &:after {
+        bottom: $offset;
+        border-bottom: solid $b-width $border-color;
+        border-left: solid $b-width $border-color;
+    }
+}
